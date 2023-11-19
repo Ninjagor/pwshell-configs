@@ -1,3 +1,8 @@
+
+Set-PSReadLineOption -EditMode Vi
+Set-PSReadLineKeyHandler -Chord Tab -Function Complete
+Set-PSReadLineKeyHandler -Chord Ctrl-r -Function ReverseSearchHistory -ViMode Insert
+Set-PSReadLineKeyHandler -Chord Ctrl-r -Function ReverseSearchHistory -ViMode Command
 function prompt {
     $arrow = [char]0x2192  # Unicode right arrow character
     $currentDirectory = (Get-Location).Path | Split-Path -Leaf
@@ -10,6 +15,8 @@ function prompt {
             $gitBranch = & git symbolic-ref --short HEAD 2>$null
         }
     }
+
+
 
     $arrowColor = 'Green'
     $directoryColor = 'Cyan'
